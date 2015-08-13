@@ -12,9 +12,13 @@ class TraineesController < ApplicationController
   end
 
   def edit
+    @trainee = Trainee.find(params[:id])
   end
 
   def update
+    @trainee = Trainee.find(params[:id])
+    @trainee.update(trainee_params)
+    
   end
 
   def destroy
