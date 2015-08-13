@@ -9,6 +9,9 @@ class TraineesController < ApplicationController
 
   def create
     @trainee = Trainee.new(trainee_params)
+    if @trainee.persisted?
+      redirect_to(trainees_url)
+    end
   end
 
   def edit
@@ -18,7 +21,7 @@ class TraineesController < ApplicationController
   def update
     @trainee = Trainee.find(params[:id])
     @trainee.update(trainee_params)
-    
+    redirect_to(trainees_url)
   end
 
   def destroy
