@@ -3,20 +3,35 @@
 </div>
 <div class="row">
 	<div class="col-md-6">
-		<div class="panel panel-success">
-			<div class="panel-heading">
-				<div class="panel panel-default">
-					<h4 align= "center"> Under construction.</h4>
-				</div>
-			</div>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			The trainee elite of SUSE :D
 		</div>
+	</div>
 	</div>
 	<div class="col-md-6">
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<h4 align = "center"> Under construction..again</h4>
-			</div>
-		</div>
+		<table class="table">
+			<tbody>
+				<%= @trainees.each do |trainee| %>
+				<tr>
+					<div class="panel panel-success">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-4 col-sm-4">
+								<h4 align="center">Your picture here!</h4>
+							</div>
+							<div class="col-xs-4 col-sm-8">
+							<div class="panel panel-default">
+								<h4 align="center"><%= trainee.first_name %> <%= trainee.last_name %></h4>
+								<h3 align="center"></h3>
+							</div>
+							</div>
+						</div>
+						</div>
+					</div>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
 	</div>
 </div>
-
