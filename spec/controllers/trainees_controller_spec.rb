@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe TraineesController, type: :controller do
+  let!(:trainee) { FactoryGirl.create(:trainee) }
+  let!(:params) { params = FactoryGirl.attributes_for(:trainee) }
+
   describe "GET #index" do
     it "shows all trainees" do
       trainees = Trainee.all
@@ -11,12 +14,19 @@ RSpec.describe TraineesController, type: :controller do
   end
 
   describe "POST #create" do
-    let(:first_name) { "Farah" }
-    let(:payload) { { trainee: { first_name: first_name, last_name: "Schueller", birthday: "16.10.1990", year: 1, email: "fschueller@suse.de", phone: "none", suse_login: "fschueller", github: "fschueller", trello: "farahschueller", description: "nothing is true, everything is permitted."}}}
     
     it "creates a new trainee" do
-        post :create, payload
-        expect(Trainee.last.first_name).to eq first_name
+        post :create, trainee: params
+        expect(Trainee.last.first_name).to eq params[:first_name]
+        expect(Trainee.last.last_name).to eq params[:last_name]
+        expect(Trainee.last.birthday).to eq params[:birthday]
+        expect(Trainee.last.year).to eq params[:year]
+        expect(Trainee.last.email).to eq params[:email]
+        expect(Trainee.last.phone).to eq params[:phone]
+        expect(Trainee.last.suse_login).to eq params[:suse_login]
+        expect(Trainee.last.github).to eq params[:github]
+        expect(Trainee.last.trello).to eq params[:trello]
+        expect(Trainee.last.description).to eq params[:description]
     end
   end
 end
