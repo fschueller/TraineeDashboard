@@ -9,8 +9,10 @@ class TraineesController < ApplicationController
 
   def create
     @trainee = Trainee.new(trainee_params)
-    if @trainee.persisted?
+    if @trainee.save
       redirect_to(trainees_url)
+    else
+      flash[:error] = "Error creating user, try again."
     end
   end
 
