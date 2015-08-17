@@ -13,6 +13,13 @@ RSpec.describe TraineesController, type: :controller do
     end
   end
 
+  describe "GET #new" do
+    it "initializes a new trainee" do
+      get :new
+      expect(assigns :trainee).to be_a_new(Trainee)
+    end
+  end
+
   describe "POST #create" do
     
     it "creates a new trainee" do
