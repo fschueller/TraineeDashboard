@@ -29,5 +29,11 @@ RSpec.describe Trainee, type: :model do
       trainee.description = 'none'
       expect(trainee).to be_valid
     end
+
+    it "should concatenate first and last name" do
+      trainee = Trainee.new(first_name: "Farah", last_name: "Rabea")
+      expect(trainee.full_name).to eq 'Farah Rabea'
+    end
+
   end
 end
