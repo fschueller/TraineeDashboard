@@ -9,6 +9,7 @@
 	</div>
 	</div>
 	<div class="col-md-6">
+	<% if @trainees %>
 		<table class="table">
 			<tbody>
 				<% @trainees.each do |trainee| %>
@@ -41,5 +42,10 @@
 				<% end %>
 			</tbody>
 		</table>
+		<% else %>
+			<div class="alert alert-success" role="alert">
+				No trainees yet.
+			</div>
+		<% end %>
 	</div>
 </div>
