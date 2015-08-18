@@ -18,7 +18,7 @@
 					<div class="panel-heading">
 						<div class="row">
 							<div class="col-xs-4 col-sm-4">
-								<h4 align="center">Your picture here!</h4>
+								<h4 align="center"><%= image_tag trainee.image_url.to_s %></h4>
 							</div>
 							<div class="col-xs-4 col-sm-8">
 							<div class="panel panel-default">
@@ -44,7 +44,7 @@
 		</table>
 		<% else %>
 			<div class="alert alert-success" role="alert">
-				No trainees yet.
+				No trainees yet!
 			</div>
 		<% end %>
 	</div>
