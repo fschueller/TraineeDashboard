@@ -3,6 +3,10 @@ class TraineesController < ApplicationController
     @trainees = Trainee.all
   end
 
+  def show
+    @trainees = Trainee.where(year: params[:id])
+  end
+
   def new
     @trainee = Trainee.new
   end
