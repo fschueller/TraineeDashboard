@@ -4,12 +4,23 @@ RSpec.describe TraineesController, type: :controller do
   let!(:trainee) { FactoryGirl.create(:trainee) }
   let!(:params) { params = FactoryGirl.attributes_for(:trainee) }
 
-  describe "GET #index" do
-    it "shows all trainees" do
-      trainees = Trainee.all
-      get :index
-
-      expect(assigns(:trainees)).to eq(trainees)
+  describe "GET #show" do
+    context "displaying the list of trainees" do
+      it "shows all 1st years" do
+        trainee = Trainee.create(year: 1)
+        get :show, id: 1
+        expect(assigns(trainee.year)).to eq(params[:id])
+      end
+      it "shows all 2nd years" do
+        trainee = Trainee.create(year: 2)
+        get :show, id: 2
+        expect(assigns(trainee.year)).to eq(params[:id])
+      end
+      it "shows all 3rd years" do
+        trainee = Trainee.create(year: 3)
+        get :show, id: 3
+        expect(assigns(trainee.year)).to eq(params[:id])
+      end
     end
   end
 
