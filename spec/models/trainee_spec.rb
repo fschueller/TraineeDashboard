@@ -1,39 +1,18 @@
 require 'rails_helper'
 
-RSpec.describe Trainee, type: :model do
+describe Trainee do
   describe "trainee features" do
-    it "should have presence validated" do
-      trainee = Trainee.new
+      it { should validate_presence_of(:first_name)}
+      it { should validate_presence_of(:last_name)}
+      it { should validate_presence_of(:birthday)}
+      it { should validate_presence_of(:year)}
+      it { should validate_presence_of(:email)}
+      it { should validate_presence_of(:phone)}
+      it { should validate_presence_of(:suse_login)}
+      it { should validate_presence_of(:github)}
+      it { should validate_presence_of(:trello)}
+      it { should validate_presence_of(:description)}
 
-      trainee.first_name = nil
-      trainee.last_name = nil
-      trainee.birthday = nil
-      trainee.year = nil
-      trainee.email = nil
-      trainee.phone = nil
-      trainee.suse_login = nil
-      trainee.github = nil
-      trainee.trello = nil
-      trainee.description = nil
-      expect(trainee).not_to be_valid
-
-      trainee.first_name = 'farah'
-      trainee.last_name = 's'
-      trainee.birthday = '16.10.1990'
-      trainee.year = '1'
-      trainee.email = 'abc@abc.com'
-      trainee.phone = '123'
-      trainee.suse_login = 'none'
-      trainee.github = 'none'
-      trainee.trello = 'none'
-      trainee.description = 'none'
-      expect(trainee).to be_valid
-    end
-
-    it "should concatenate first and last name" do
-      trainee = Trainee.new(first_name: "Farah", last_name: "Rabea")
-      expect(trainee.full_name).to eq 'Farah Rabea'
-    end
-
+      it { should validate_inclusion_of(:year).in_range(1..3)}
   end
 end
