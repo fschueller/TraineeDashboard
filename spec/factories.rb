@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :trainee, class: Trainee do
     sequence(:first_name) { Faker::Name.first_name }
     sequence(:last_name) { Faker::Name.last_name }
-    sequence(:birthday) { Date.new.to_formatted_s(:iso8601) }
+    sequence(:birthday) { Faker::Date.birthday }
     sequence(:year) { 1 }
     sequence(:email) { Faker::Internet.email }
     sequence(:phone) { Faker::PhoneNumber.phone_number }
