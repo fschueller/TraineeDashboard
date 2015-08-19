@@ -36,6 +36,6 @@ class TraineesController < ApplicationController
   protected
 
   def trainee_params
-    params.require(:trainee).permit(:first_name, :last_name, :birthday, :year, :email, :phone, :suse_login, :github, :trello, :description, :image)
+    params.require(:trainee).permit(:first_name, :last_name, :birthday, :year, :email, :phone, :suse_login, :github, :trello, :description, :image, :remote_image_url)
   end
 end
