@@ -17,16 +17,7 @@ RSpec.describe Trainee, type: :model do
       trainee.description = nil
       expect(trainee).not_to be_valid
 
-      trainee.first_name = 'farah'
-      trainee.last_name = 's'
-      trainee.birthday = '16.10.1990'
-      trainee.year = '1'
-      trainee.email = 'abc@abc.com'
-      trainee.phone = '123'
-      trainee.suse_login = 'none'
-      trainee.github = 'none'
-      trainee.trello = 'none'
-      trainee.description = 'none'
+      trainee = FactoryGirl.create(:trainee)
       expect(trainee).to be_valid
     end
 
