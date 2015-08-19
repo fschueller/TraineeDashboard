@@ -1,15 +1,17 @@
 require 'rails_helper'
 
-RSpec.describe TraineesController, type: :controller do
+describe TraineesController do
   let!(:trainee) { FactoryGirl.create(:trainee) }
-  let!(:params) { params = FactoryGirl.attributes_for(:trainee) }
+  let(:params) { FactoryGirl.attributes_for(:trainee) }
 
   describe "GET #index" do
+    before do
+      FactoryGirl.create(:trainee)
+    end
     it "shows all trainees" do
-      trainees = Trainee.all
       get :index
 
-      expect(assigns(:trainees)).to eq(trainees)
+      expect(assigns(:trainees)).to eq(Trainee.all)
     end
   end
 
