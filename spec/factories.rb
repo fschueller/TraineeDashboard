@@ -10,5 +10,6 @@ FactoryGirl.define do
     sequence(:github) { Faker::Internet.user_name }
     sequence(:trello) { Faker::Internet.user_name }
     sequence(:description) { Faker::Lorem.paragraph }
+    sequence(:remote_image_url) { Faker::Avatar.image }
   end
 end
