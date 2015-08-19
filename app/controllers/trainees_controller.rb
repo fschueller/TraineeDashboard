@@ -13,7 +13,7 @@ class TraineesController < ApplicationController
   def create
     @trainee = Trainee.new(trainee_params)
     if @trainee.save
-      redirect_to(trainees_url)
+      redirect_to action: "show", id: @trainee.year
     else
       flash[:error] = "Error creating user, try again."
     end
@@ -26,7 +26,7 @@ class TraineesController < ApplicationController
   def update
     @trainee = Trainee.find(params[:id])
     @trainee.update(trainee_params)
-    redirect_to(trainees_url)
+    redirect_to action: "show", id: @trainee.year
   end
 
   def destroy
