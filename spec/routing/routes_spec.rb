@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "routes for TraineeDashboard" do
+describe "routes for TraineeDashboard" do
 
   it "routes to root" do
     expect(get("/")).to route_to("dashboard#index")
