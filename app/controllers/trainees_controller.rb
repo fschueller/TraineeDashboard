@@ -26,9 +26,6 @@ class TraineesController < ApplicationController
     redirect_to(trainees_url)
   end
 
-  def destroy
-  end
-
   protected
 
   def trainee_params
