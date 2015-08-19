@@ -1,6 +1,6 @@
 class TraineesController < ApplicationController
   def index
-    @trainees = Trainee.all
+    @trainees = Trainee.all.decorate
   end
 
   def new
