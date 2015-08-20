@@ -3,15 +3,6 @@ require 'rails_helper'
 describe TraineesController do
   let(:params) { FactoryGirl.attributes_for(:trainee) }
 
-  describe "GET #index" do
-    before do
-      FactoryGirl.create(:trainee)
-    end
-    it "shows all trainees" do
-      get :index
-
-      expect(assigns(:trainees)).to eq(Trainee.all)
-
   describe "GET #show" do
     context "displaying the list of trainees" do
       it "shows all 1st years" do
