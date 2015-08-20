@@ -14,5 +14,7 @@ describe Trainee do
       it { should validate_presence_of(:description)}
 
       it { should validate_inclusion_of(:year).in_range(1..3)}
+      it { should allow_value("email@address.com").for(:email) }
+      it { should_not allow_value("foo").for(:email) }
   end
 end
