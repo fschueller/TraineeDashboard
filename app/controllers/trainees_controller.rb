@@ -1,9 +1,6 @@
 class TraineesController < ApplicationController
-  def index
-  end
-
   def show
-    @trainees = Trainee.where(year: params[:id])
+    @trainees = Trainee.where(year: params[:id]).decorate
   end
 
   def new
