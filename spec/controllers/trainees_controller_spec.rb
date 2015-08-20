@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe TraineesController do
-  let!(:trainee) { FactoryGirl.create(:trainee) }
   let(:params) { FactoryGirl.attributes_for(:trainee) }
 
   describe "GET #index" do
