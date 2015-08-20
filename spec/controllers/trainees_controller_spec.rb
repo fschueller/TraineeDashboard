@@ -11,6 +11,24 @@ describe TraineesController do
       get :index
 
       expect(assigns(:trainees)).to eq(Trainee.all)
+
+  describe "GET #show" do
+    context "displaying the list of trainees" do
+      it "shows all 1st years" do
+        trainee = Trainee.create(year: 1)
+        get :show, id: 1
+        expect(assigns(trainee.year)).to eq(params[:id])
+      end
+      it "shows all 2nd years" do
+        trainee = Trainee.create(year: 2)
+        get :show, id: 2
+        expect(assigns(trainee.year)).to eq(params[:id])
+      end
+      it "shows all 3rd years" do
+        trainee = Trainee.create(year: 3)
+        get :show, id: 3
+        expect(assigns(trainee.year)).to eq(params[:id])
+      end
     end
   end
 
