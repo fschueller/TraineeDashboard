@@ -31,7 +31,6 @@ describe TraineesController do
   end
 
   describe "POST #create" do
-    
     it "creates a new trainee" do
         post :create, trainee: params
         expect(Trainee.last.first_name).to eq params[:first_name]
@@ -44,6 +43,29 @@ describe TraineesController do
         expect(Trainee.last.github).to eq params[:github]
         expect(Trainee.last.trello).to eq params[:trello]
         expect(Trainee.last.description).to eq params[:description]
+        expect(response).to redirect_to(action: "show", id: Trainee.last.year)
+    end
+
+    it "flashes an error at faulty parameters" do
+      params = FactoryGirl.attributes_for(:trainee, year: 4)
+      post :create, trainee: params
+      expect(flash[:error]).to be_present
+    end
+  end
+
+  describe "GET edit" do
+    it "looks up trainee by id" do
+      trainee = FactoryGirl.create :trainee
+      get :edit, id: trainee
+      expect(assigns(:trainee).id).to eq trainee[:id]
+    end
+  end
+
+  describe "PATCH update" do
+    it "updates trainee with new parameter" do
+      trainee = FactoryGirl.create :trainee
+      patch :update, id: trainee, trainee: FactoryGirl.attributes_for(:trainee, year: 3)
+      expect(Trainee.last.year).to eq 3
     end
   end
 end
