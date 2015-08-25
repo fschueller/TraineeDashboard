@@ -12,7 +12,7 @@ class TraineesController < ApplicationController
     if @trainee.save
       redirect_to action: "show", id: @trainee.year
     else
-      redirect_to new_trainee_url, flash: { error: "Error adding trainee. Please check if you filled in all fields and entered a valid email address!" }
+      redirect_to new_trainee_url, flash: { error: "Error adding trainee. Please check if you filled in all fields correctly and entered a valid email address!" }
     end
   end
 
