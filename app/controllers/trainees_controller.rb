@@ -1,6 +1,10 @@
 class TraineesController < ApplicationController
   def index
     @trainees = Trainee.where(year: params[:year]).decorate
+
+    if request.xhr?
+      render "update_table"
+    end
   end
 
   def new

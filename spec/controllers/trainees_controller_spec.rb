@@ -21,6 +21,20 @@ describe TraineesController do
         expect(assigns :trainees ).to eq Trainee.where(year: trainee).decorate
       end
     end
+
+    context "when xhr request" do
+      it "renders partial" do
+        xhr :get, :index
+        expect(response).to render_template('update_table')
+      end
+    end
+
+    context "when not xhr request" do
+      it "renders whole template" do
+        get :index
+        expect(response).to render_template(:index)
+      end
+    end
   end
 
   describe "GET #new" do
