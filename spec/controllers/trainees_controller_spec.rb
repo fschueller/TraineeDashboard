@@ -57,7 +57,7 @@ describe TraineesController do
         expect(Trainee.last.github).to eq params[:github]
         expect(Trainee.last.trello).to eq params[:trello]
         expect(Trainee.last.description).to eq params[:description]
-        expect(response).to redirect_to(action: "show", id: Trainee.last.year)
+        expect(response).to redirect_to(action: "index", year: Trainee.last.year)
     end
 
     it "flashes an error at faulty parameters" do
@@ -81,7 +81,7 @@ describe TraineesController do
       trainee = FactoryGirl.create :trainee
       patch :update, id: trainee, trainee: FactoryGirl.attributes_for(:trainee, year: 3)
       expect(Trainee.last.year).to eq 3
-      expect(response).to redirect_to(action: "show", id: Trainee.last.year)
+      expect(response).to redirect_to(action: "index", year: Trainee.last.year)
     end
   end
 end
