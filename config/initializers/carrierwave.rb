@@ -4,3 +4,4 @@ if Rails.env.test? || Rails.env.cucumber?
     config.enable_processing = false
   end
 end
+
