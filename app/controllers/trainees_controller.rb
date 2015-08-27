@@ -1,6 +1,6 @@
 class TraineesController < ApplicationController
-  def show
-    @trainees = Trainee.where(year: params[:id]).decorate
+  def index
+    @trainees = Trainee.where(year: params[:year]).decorate
   end
 
   def new
@@ -12,7 +12,8 @@ class TraineesController < ApplicationController
     if @trainee.save
       redirect_to action: "show", id: @trainee.year
     else
-      redirect_to new_trainee_url, flash: { error: "Error adding trainee. Please check if you filled in all fields correctly and entered a valid email address!" }
+      flash[:error] = "Error adding trainee. Please check if you filled in all fields correctly and entered a valid email address!"
+      render :new
     end
   end
 
