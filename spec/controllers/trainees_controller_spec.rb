@@ -3,22 +3,22 @@ require 'rails_helper'
 describe TraineesController do
   let(:params) { FactoryGirl.attributes_for(:trainee) }
 
-  describe "GET #show" do
+  describe "GET #index" do
     context "displaying the list of trainees" do
       it "shows all 1st years" do
-        trainee = Trainee.create(year: 1)
-        get :show, id: 1
-        expect(assigns(trainee.year)).to eq(params[:id])
+        trainee = FactoryGirl.create :trainee
+        get :index, year: trainee
+        expect(assigns :trainees).to eq Trainee.where(year: trainee).decorate
       end
       it "shows all 2nd years" do
-        trainee = Trainee.create(year: 2)
-        get :show, id: 2
-        expect(assigns(trainee.year)).to eq(params[:id])
+        trainee = FactoryGirl.create(:trainee, year: 2)
+        get :index, year: trainee
+        expect(assigns :trainees ).to eq Trainee.where(year: trainee).decorate
       end
       it "shows all 3rd years" do
-        trainee = Trainee.create(year: 3)
-        get :show, id: 3
-        expect(assigns(trainee.year)).to eq(params[:id])
+        trainee = FactoryGirl.create(:trainee, year: 3)
+        get :index, year: trainee
+        expect(assigns :trainees ).to eq Trainee.where(year: trainee).decorate
       end
     end
   end
@@ -50,6 +50,7 @@ describe TraineesController do
       params = FactoryGirl.attributes_for(:trainee, year: 4)
       post :create, trainee: params
       expect(flash[:error]).to be_present
+      expect(response).to render_template(:new)
     end
   end
 
@@ -66,6 +67,7 @@ describe TraineesController do
       trainee = FactoryGirl.create :trainee
       patch :update, id: trainee, trainee: FactoryGirl.attributes_for(:trainee, year: 3)
       expect(Trainee.last.year).to eq 3
+      expect(response).to redirect_to(action: "show", id: Trainee.last.year)
     end
   end
 end
