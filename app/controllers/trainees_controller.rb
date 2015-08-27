@@ -14,7 +14,7 @@ class TraineesController < ApplicationController
   def create
     @trainee = Trainee.new(trainee_params)
     if @trainee.save
-      redirect_to action: "show", id: @trainee.year
+      redirect_to action: "index", year: @trainee.year
     else
       flash[:error] = "Error adding trainee. Please check if you filled in all fields correctly and entered a valid email address!"
       render :new
@@ -28,7 +28,7 @@ class TraineesController < ApplicationController
   def update
     @trainee = Trainee.find(params[:id])
     @trainee.update(trainee_params)
-    redirect_to action: "show", id: @trainee.year
+    redirect_to action: "index", year: @trainee.year
   end
 
   protected
