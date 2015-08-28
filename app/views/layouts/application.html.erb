@@ -35,13 +35,13 @@
               <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-users"></i> Trainees <i class="fa fa-fw fa-caret-down"></i></a>
               <ul id="demo" class="collapse">
                 <li>
-                  <a href="/trainees?year=1">1st year</a>
+                  <%= link_to '1st year', trainees_path(year: 1) %>
                 </li>
                 <li>
-                  <a href="/trainees?year=2">2nd year</a>
+                  <%= link_to '2nd year', trainees_path(year: 2) %>
                 </li>
                 <li>
-                  <a href="/trainees?year=3">3rd year</a>
+                  <%= link_to '3rd year', trainees_path(year: 3) %>
                 </li>
               </ul>
             </li>
