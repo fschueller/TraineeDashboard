@@ -1,6 +1,10 @@
 class TraineesController < ApplicationController
   def index
-    @trainees = Trainee.all.decorate
+    @trainees = Trainee.where(year: params[:year]).decorate
+
+    if request.xhr?
+      render "update_table"
+    end
   end
 
   def new
@@ -10,9 +14,10 @@ class TraineesController < ApplicationController
   def create
     @trainee = Trainee.new(trainee_params)
     if @trainee.save
-      redirect_to(trainees_url)
+      redirect_to action: "index", year: @trainee.year
     else
-      redirect_to new_trainee_url, flash: { error: "Error adding trainee. Please check if you filled in all fields and entered a valid email address!" }
+      flash[:error] = "Error adding trainee. Please check if you filled in all fields correctly and entered a valid email address!"
+      render :new
     end
   end
 
@@ -23,12 +28,12 @@ class TraineesController < ApplicationController
   def update
     @trainee = Trainee.find(params[:id])
     @trainee.update(trainee_params)
-    redirect_to(trainees_url)
+    redirect_to action: "index", year: @trainee.year
   end
 
   protected
 
   def trainee_params
-    params.require(:trainee).permit(:first_name, :last_name, :birthday, :year, :email, :phone, :suse_login, :github, :trello, :description)
+    params.require(:trainee).permit(:first_name, :last_name, :birthday, :year, :email, :phone, :room, :suse_login, :github, :trello, :description, :image, :remote_image_url)
   end
 end

@@ -1,0 +1,27 @@
+<tr>
+<div class="panel panel-success">
+<div class="panel-heading">
+	<div class="row">
+		<div class="col-xs-4 col-sm-6">
+			<h4 align="center"><%= image_tag trainee.image_url(:thumb).to_s %></h4>
+		</div>
+		<div class="col-xs-4 col-sm-6">
+		<div class="panel panel-default">
+			<h4 align="center">Name: <%= trainee.full_name %></h4>
+			<h5 align="center">Birthday: <%= l trainee.birthday, format: :long %></h5>
+			<h5 align="center">Year: <%= trainee.year %></h5>
+			<h5 align="center">eMail: <%= trainee.email %></h5>
+			<h5 align="center">Phone: <%= trainee.phone %></h5>
+			<h5 align="center">Room: <%= trainee.room %></h5>
+			<h5 align="center">Login @ Suse: <%= trainee.suse_login %></h5>
+			<h5 align="center">GitHub: <%= trainee.github %></h5>
+			<h5 align="center">Trello: <%= trainee.trello %></h5>
+			<h5 align="center">Description: <%= trainee.description %></h5>
+		</div>
+		</div>
+	</div>
+	</div>
+	<div class="panel-footer"><%= link_to 'Edit...', edit_trainee_path(trainee) %>
+	</div>
+</div>
+</tr>
