@@ -6,9 +6,11 @@ FactoryGirl.define do
     sequence(:year) { 1 }
     sequence(:email) { Faker::Internet.email }
     sequence(:phone) { Faker::PhoneNumber.phone_number }
+    sequence(:room) { Faker::Number.decimal(1, 2) }
     sequence(:suse_login) { Faker::Internet.user_name(%w(. _ -)) }
     sequence(:github) { Faker::Internet.user_name }
     sequence(:trello) { Faker::Internet.user_name }
     sequence(:description) { Faker::Lorem.paragraph }
+    sequence(:remote_image_url) { Faker::Avatar.image }
   end
 end

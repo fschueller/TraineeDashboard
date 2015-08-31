@@ -4,13 +4,36 @@ describe TraineesController do
   let(:params) { FactoryGirl.attributes_for(:trainee) }
 
   describe "GET #index" do
-    before do
-      FactoryGirl.create(:trainee)
+    context "displaying the list of trainees" do
+      it "shows all 1st years" do
+        trainee = FactoryGirl.create :trainee
+        get :index, year: trainee
+        expect(assigns :trainees).to eq Trainee.where(year: trainee).decorate
+      end
+      it "shows all 2nd years" do
+        trainee = FactoryGirl.create(:trainee, year: 2)
+        get :index, year: trainee
+        expect(assigns :trainees ).to eq Trainee.where(year: trainee).decorate
+      end
+      it "shows all 3rd years" do
+        trainee = FactoryGirl.create(:trainee, year: 3)
+        get :index, year: trainee
+        expect(assigns :trainees ).to eq Trainee.where(year: trainee).decorate
+      end
     end
-    it "shows all trainees" do
-      get :index
 
-      expect(assigns(:trainees)).to eq(Trainee.all)
+    context "when xhr request" do
+      it "renders partial" do
+        xhr :get, :index
+        expect(response).to render_template('update_table')
+      end
+    end
+
+    context "when not xhr request" do
+      it "renders whole template" do
+        get :index
+        expect(response).to render_template(:index)
+      end
     end
   end
 
@@ -22,7 +45,6 @@ describe TraineesController do
   end
 
   describe "POST #create" do
-    
     it "creates a new trainee" do
         post :create, trainee: params
         expect(Trainee.last.first_name).to eq params[:first_name]
@@ -35,6 +57,31 @@ describe TraineesController do
         expect(Trainee.last.github).to eq params[:github]
         expect(Trainee.last.trello).to eq params[:trello]
         expect(Trainee.last.description).to eq params[:description]
+        expect(response).to redirect_to(action: "index", year: Trainee.last.year)
+    end
+
+    it "flashes an error at faulty parameters" do
+      params = FactoryGirl.attributes_for(:trainee, year: 4)
+      post :create, trainee: params
+      expect(flash[:error]).to be_present
+      expect(response).to render_template(:new)
+    end
+  end
+
+  describe "GET edit" do
+    it "looks up trainee by id" do
+      trainee = FactoryGirl.create :trainee
+      get :edit, id: trainee
+      expect(assigns(:trainee).id).to eq trainee[:id]
+    end
+  end
+
+  describe "PATCH update" do
+    it "updates trainee with new parameter" do
+      trainee = FactoryGirl.create :trainee
+      patch :update, id: trainee, trainee: FactoryGirl.attributes_for(:trainee, year: 3)
+      expect(Trainee.last.year).to eq 3
+      expect(response).to redirect_to(action: "index", year: Trainee.last.year)
     end
   end
 end
